@@ -8,6 +8,7 @@ public class HallwayController : MonoBehaviour
     public List<GameObject> instantiatedHallways;
     public Transform hallwayContainer;
     public float speed;
+    public float scale;
     public int warmupCount;
 
     // Start is called before the first frame update
@@ -33,7 +34,7 @@ public class HallwayController : MonoBehaviour
 
         if (instantiatedHallways.Count != 0)
         {
-            instantiatedHallway.transform.position = (instantiatedHallways[instantiatedHallways.Count - 1].transform.position + (Vector3.forward * 10f));
+            instantiatedHallway.transform.position = (instantiatedHallways[instantiatedHallways.Count - 1].transform.position + (Vector3.forward * scale));
         }
         else 
         {
@@ -56,7 +57,7 @@ public class HallwayController : MonoBehaviour
         for (int i = 0; i < instantiatedHallways.Count; i++) 
         {
             instantiatedHallways[i].transform.position += Vector3.back * Time.deltaTime * speed;
-            if (instantiatedHallways[i].transform.position.z <= -25) 
+            if (instantiatedHallways[i].transform.position.z <= -45) 
             {
                 GameObject condemnedHallway = instantiatedHallways[i];
                 Destroy(condemnedHallway);

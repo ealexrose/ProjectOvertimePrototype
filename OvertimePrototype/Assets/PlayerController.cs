@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float slideTime;
     public float slideAdjust;
     bool sliding;
+    bool jumping;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +30,18 @@ public class PlayerController : MonoBehaviour
         {
             player.transform.position = player.transform.position = new Vector3(pointTwo.position.x, player.transform.position.y, pointTwo.position.z);
         }
-        if (Input.GetButtonDown("Down") && !sliding) 
+        if (Input.GetButtonDown("Down") && !sliding && !jumping) 
         {
             sliding = true;
             player.transform.position += Vector3.down * slideAdjust;
             StartCoroutine(SlideWait());
+        }
+
+        if (Input.GetButtonDown("Up") && !sliding && !jumping)
+        {
+            jumping = true;
+            player.transform.position -= Vector3.down * slideAdjust;
+            StartCoroutine(JumpWait());
         }
     }
 
@@ -42,6 +50,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(slideTime);
         player.transform.position -= Vector3.down * slideAdjust;
         sliding = false;
-    
+    }
+
+    IEnumerator JumpWait()
+    {
+        yield return new WaitForSeconds(slideTime);
+        player.transform.position += Vector3.down * slideAdjust;
+        jumping = false;
     }
 }

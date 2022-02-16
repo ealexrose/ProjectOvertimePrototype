@@ -157,7 +157,8 @@ MonoBehaviour:
   instantiatedHallways: []
   hallwayContainer: {fileID: 803576130}
   speed: 25
-  warmupCount: 3
+  scale: 14
+  warmupCount: 7
 --- !u!4 &39330897
 Transform:
   m_ObjectHideFlags: 0
